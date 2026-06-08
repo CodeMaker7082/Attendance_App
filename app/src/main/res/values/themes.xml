@@ -1,0 +1,10 @@
+<resources>
+    <style name="ThemeGoatAttendance" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">#BDBDBD</item>
+        <item name="colorPrimaryVariant">#757575</item>
+        <item name="toolbarStyle">@style/GoatToolbarStyle</item>
+    </style>
+    <style name="GoatToolbarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="titleTextColor">#212121</item>
+    </style>
+</resources>

@@ -1,0 +1,57 @@
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+	<LinearLayout
+		android:id="@+id/linear1"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical">
+		<LinearLayout
+			android:id="@+id/linear2"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:padding="2dp"
+			android:background="#9E9E9E"
+			android:orientation="vertical">
+			<FrameLayout
+				android:id="@+id/frame_layout8"
+				android:layout_width="match_parent"
+				android:layout_height="40dp">
+				<androidx.recyclerview.widget.RecyclerView
+					android:id="@+id/date_pick"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:background="#EEEEEE" />
+				<View
+					android:id="@+id/view9"
+					android:layout_width="50dp"
+					android:layout_height="match_parent"
+					android:background="@drawable/left_fade" />
+				<View
+					android:id="@+id/view10"
+					android:layout_width="50dp"
+					android:layout_height="match_parent"
+					android:background="@drawable/right_fade"
+					android:layout_gravity="end" />
+			</FrameLayout>
+		</LinearLayout>
+		<LinearLayout
+			android:id="@+id/linear3"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:padding="2dp"
+			android:orientation="vertical">
+			<androidx.recyclerview.widget.RecyclerView
+				android:id="@+id/class_list_recycle"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:padding="8dp"
+				android:background="#CFD8DC"
+				tools:listitem="@layout/class_attendance" />
+		</LinearLayout>
+	</LinearLayout>
+</LinearLayout>

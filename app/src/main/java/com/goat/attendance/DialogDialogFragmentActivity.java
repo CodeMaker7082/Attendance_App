@@ -1,0 +1,131 @@
+package com.goat.attendance;
+
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.GradientDrawable;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.Toast;
+import android.view.Window;
+import android.view.WindowManager;
+import android.util.DisplayMetrics;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
+
+public class DialogDialogFragmentActivity extends DialogFragment {
+    
+    private DialogDialogFragmentBinding binding;
+    
+    private DialogListener listener;
+    
+    // SAFE communication method (NO onAttach crash)
+    public void setDialogListener(DialogListener listener) {
+        this.listener = listener;
+    }
+    
+    public interface DialogListener {
+        void onDialogResult(Bundle data);
+    }
+    
+    @NonNull
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater,
+    @Nullable ViewGroup container,
+    @Nullable Bundle savedInstanceState) {
+        
+        binding = DialogDialogFragmentBinding.inflate(inflater, container, false);
+        initializeLogic();
+        return binding.getRoot();
+    }
+    
+    private void initializeLogic() {
+        
+        // background styling
+        GradientDrawable bg = new GradientDrawable();
+        bg.setCornerRadius(12);
+        bg.setStroke(2, 0xFF000000);
+        bg.setColor(0xFFEEEEEE);
+        binding.dialogLayout.setBackground(bg);
+        
+        // safe input config
+        binding.studName.setMaxLines(1);
+        binding.studPhone.setMaxLines(1);
+        binding.studPlace.setMaxLines(1);
+        
+        // OK button
+
+        binding.btnOkay.setOnClickListener(v -> {
+            String name = binding.studName.getText().toString().trim();
+            String phone = binding.studPhone.getText().toString().trim();
+            String place = binding.studPlace.getText().toString().trim();
+
+            if (name.isEmpty()) {
+                Toast.makeText(getActivity(), "Enter a Name", Toast.LENGTH_SHORT).show();
+                return; // stop here
+            }
+
+            if (phone.length() < 10) {
+                Toast.makeText(getActivity(), "Enter a valid 10-digit Phone Number", Toast.LENGTH_SHORT).show();
+                return; // stop here
+            }
+
+            if (place.isEmpty()) {
+                Toast.makeText(getActivity(), "Enter a Location", Toast.LENGTH_SHORT).show();
+                return; // stop here
+            }
+
+            // If we got here, everything is valid
+            Bundle data = new Bundle();
+            data.putString("name", name);
+            data.putString("phone", phone);
+            data.putString("place", place);
+
+            if (listener != null) {
+                listener.onDialogResult(data);
+            }
+            dismiss();
+        });
+    }
+    
+    @Override
+    public void onStart() {
+        super.onStart();
+        
+        Dialog dialog = getDialog();
+        if (dialog != null && dialog.getWindow() != null) {
+            
+            dialog.getWindow().setBackgroundDrawable( new ColorDrawable(Color.TRANSPARENT));
+            dialog.setCanceledOnTouchOutside(false);
+            dialog.setCancelable(false);
+            dialog.getWindow().setWindowAnimations(R.style.DialogAnimation);
+            Window window = dialog.getWindow();
+            WindowManager.LayoutParams params = window.getAttributes();
+            DisplayMetrics metrics = new DisplayMetrics();
+            getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
+            int margin = (int) (24 * metrics.density);
+            params.width = metrics.widthPixels - (margin * 2);
+            params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+            
+            window.setAttributes(params);
+        }
+    }
+    
+    @Override
+    public void onResume() {
+        super.onResume();
+        View view = getView();
+        if (view != null) {
+            view.setScaleX(0.8f);
+            view.setScaleY(0.8f);
+            view.setAlpha(0f);
+            view.animate().alpha(1f).scaleX(1f).scaleY(1f).setDuration(250).start();
+        }
+    }
+}
+    

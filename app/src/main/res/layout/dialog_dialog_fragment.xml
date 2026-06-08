@@ -1,0 +1,108 @@
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical"
+	android:padding="16dp"
+	android:background="@android:color/transparent">
+	<LinearLayout
+		android:id="@+id/dialog_layout"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:padding="16dp"
+		android:background="@drawable/box"
+		android:gravity="center_horizontal"
+		android:orientation="vertical">
+		<TextView
+			android:id="@+id/textview5"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingBottom="12dp"
+			android:gravity="center_horizontal|center_vertical"
+			android:text="Add Student"
+			android:textSize="20sp"
+			android:textStyle="bold"
+			android:textColor="#212121" />
+		<LinearLayout
+			android:id="@+id/st_nameholder"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="10dp"
+			android:padding="10dp"
+			android:background="@drawable/box"
+			android:orientation="vertical">
+			<TextView
+				android:id="@+id/textview17"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Student Name"
+				android:textSize="12sp"
+				android:textColor="#616161" />
+			<EditText
+				android:id="@+id/stud_name"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:textSize="16sp"
+				android:textColor="#2E7D32"
+				android:hint="Enter name" />
+		</LinearLayout>
+		<LinearLayout
+			android:id="@+id/st_numberholder"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="10dp"
+			android:padding="10dp"
+			android:background="@drawable/box"
+			android:orientation="vertical">
+			<TextView
+				android:id="@+id/textview18"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Phone Number"
+				android:textSize="12sp"
+				android:textColor="#616161" />
+			<EditText
+				android:id="@+id/stud_phone"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:textSize="16sp"
+				android:textColor="#2E7D32"
+				android:hint="Enter phone"
+				android:inputType="phone" />
+		</LinearLayout>
+		<LinearLayout
+			android:id="@+id/st_placeholder"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="14dp"
+			android:padding="10dp"
+			android:background="@drawable/box"
+			android:orientation="vertical">
+			<TextView
+				android:id="@+id/textview19"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Place"
+				android:textSize="12sp"
+				android:textColor="#616161" />
+			<EditText
+				android:id="@+id/stud_place"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:textSize="16sp"
+				android:textColor="#2E7D32"
+				android:hint="Enter place" />
+		</LinearLayout>
+		<Button
+			android:id="@+id/btnOkay"
+			android:layout_width="match_parent"
+			android:layout_height="48dp"
+			android:background="@drawable/btn_primary"
+			android:text="SAVE"
+			android:textSize="16sp"
+			android:textStyle="bold"
+			android:textColor="#FFFFFF" />
+	</LinearLayout>
+</LinearLayout>

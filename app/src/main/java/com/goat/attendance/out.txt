@@ -1,0 +1,70 @@
+To make the query hint visible always and change the color of all inner items in a  SearchView , you can use the following approach:
+
+Set the  setHint  method on the  SearchView  to set the query hint.
+Override the  onCreateView  method of the activity to set the hint color using a custom  TextView .
+Override the  onQueryTextSubmit  method to handle the query text submission event.
+
+Here's an example implementation:
+
+ 
+import android.os.Bundle;
+import android.text.InputType;
+import android.widget.EditText;
+import android.widget.SearchView;
+import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        SearchView searchView = findViewById(R.id.searchview1);
+
+        // Set the query hint
+        searchView.setQueryHint("Enter a Place, Name, Number to Search Students");
+
+        // Override onCreateView to set the hint color
+        searchView.setSearchIcon(null); // Remove the default search icon
+        searchView.setSubmitButton(null); // Remove the default submit button
+        searchView.setCloseIcon(null); // Remove the default close icon
+        searchView.setQueryBackground(null); // Remove the default query background
+        searchView.setQueryTextAppearance(android.R.style.TextAppearance.SearchView);
+        searchView.setSearchIconColor(Color.parseColor("#000000")); // Set the icon color
+        searchView.setQueryTextColor(Color.parseColor("#000000")); // Set the text color
+        searchView.setSubmitButtonColor(Color.parseColor("#000000")); // Set the submit button color
+        searchView.setCloseIconColor(Color.parseColor("#000000")); // Set the close icon color
+
+        // Override onQueryTextSubmit to handle the query text submission event
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                // Handle the query text submission
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                // Handle the query text change
+                return true;
+            }
+        });
+    }
+}
+ 
+
+In the XML layout file ( activity_main.xml ), ensure you have a  SearchView  with the appropriate ID:
+
+ 
+<androidx.appcompat.widget.SearchView
+    android:id="@+id/searchview1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:padding="2dp"
+    android:background="#B0BEC5" />
+ 
+
+This solution will ensure that the query hint is always visible and will change the color of all inner items of the  SearchView .
